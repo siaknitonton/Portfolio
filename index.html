@@ -1,573 +1,1460 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anthony Carreon - Portfolio</title>
-    <!--
-    - favicon
-  -->
-    <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
-    <!--
-    - custom css link
-  -->
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <!--
-    - google font link
-  -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <!--
-    - #MAIN
-  -->
-    <main>
-      <!--
-      - #SIDEBAR
-    -->
-      <aside class="sidebar" data-sidebar>
-        <div class="sidebar-info">
-          <figure class="avatar-box">
-            <img src="./assets/images/my-avatar.png" alt="Anthony Carreon" width="80">
-          </figure>
-          <div class="info-content">
-            <h1 class="name" title="Anthony Carreon">Anthony Carreon</h1>
-            <p class="title">Software Engr / Sr. BI Developer</p>
-          </div>
-          <button class="info_more-btn" data-sidebar-btn>
-            <span>Show Contacts</span>
-            <ion-icon name="chevron-down"></ion-icon>
-          </button>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anthony Carreon — Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ═══════════ THEME TOKENS ═══════════ */
+        [data-theme="dark"] {
+            --scene-bg: #070708;
+            --card-bg: #0f0f11;
+            --card-border: rgba(255, 255, 255, 0.06);
+            --left-bg: #0d0d0f;
+            --right-bg: #0f0f11;
+            --nav-bg: #0f0f11;
+            --border: rgba(255, 255, 255, 0.07);
+            --muted: rgba(255, 255, 255, 0.34);
+            --text: rgba(255, 255, 255, 0.86);
+            --text-strong: #ffffff;
+            --bio-color: rgba(255, 255, 255, 0.54);
+            --stack-key: rgba(255, 255, 255, 0.7);
+            --stack-val: rgba(255, 255, 255, 0.37);
+            --tag-bg: rgba(255, 255, 255, 0.04);
+            --tag-border: rgba(255, 255, 255, 0.09);
+            --project-hover-border: rgba(255, 255, 255, 0.22);
+            --scrollbar: rgba(255, 255, 255, 0.1);
+            --glow-a: rgba(232, 197, 71, 0.22);
+            --glow-b: rgba(91, 141, 238, 0.14);
+            --card-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04), 0 4px 6px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.55), 0 32px 80px rgba(0, 0, 0, 0.45), 0 0 90px rgba(232, 197, 71, 0.12), 0 0 180px rgba(91, 141, 238, 0.08);
+            --btn-bg: rgba(255, 255, 255, 0.92);
+            --btn-text: #0f0f11;
+            --toggle-bg: rgba(255, 255, 255, 0.07);
+            --toggle-border: rgba(255, 255, 255, 0.13);
+            --toggle-knob: #fff;
+            --accent: #e8c547;
+            --accent2: #5b8dee;
+            --code-bg: rgba(255, 255, 255, 0.08);
+            --stat-bg: rgba(255, 255, 255, 0.03);
+        }
+
+        [data-theme="light"] {
+            --scene-bg: #dddbd4;
+            --card-bg: #fafaf8;
+            --card-border: rgba(0, 0, 0, 0.09);
+            --left-bg: #f3f2ee;
+            --right-bg: #fafaf8;
+            --nav-bg: #fafaf8;
+            --border: rgba(0, 0, 0, 0.09);
+            --muted: rgba(0, 0, 0, 0.38);
+            --text: rgba(0, 0, 0, 0.8);
+            --text-strong: #000000;
+            --bio-color: rgba(0, 0, 0, 0.56);
+            --stack-key: rgba(0, 0, 0, 0.72);
+            --stack-val: rgba(0, 0, 0, 0.42);
+            --tag-bg: rgba(0, 0, 0, 0.04);
+            --tag-border: rgba(0, 0, 0, 0.1);
+            --project-hover-border: rgba(0, 0, 0, 0.22);
+            --scrollbar: rgba(0, 0, 0, 0.15);
+            --glow-a: rgba(180, 148, 20, 0.18);
+            --glow-b: rgba(50, 90, 200, 0.12);
+            --card-shadow: 0 0 0 1px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.1), 0 28px 72px rgba(0, 0, 0, 0.13), 0 0 100px rgba(180, 148, 20, 0.12), 0 0 200px rgba(50, 90, 200, 0.08);
+            --btn-bg: #111111;
+            --btn-text: #ffffff;
+            --toggle-bg: rgba(0, 0, 0, 0.06);
+            --toggle-border: rgba(0, 0, 0, 0.13);
+            --toggle-knob: #111;
+            --accent: #a8820a;
+            --accent2: #2b56c5;
+            --code-bg: rgba(0, 0, 0, 0.06);
+            --stat-bg: rgba(0, 0, 0, 0.03);
+        }
+
+        html {
+            font-size: 15px;
+        }
+
+        body {
+            background: var(--scene-bg);
+            color: var(--text);
+            font-family: 'JetBrains Mono', monospace;
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 48px 20px 64px;
+            transition: background .45s ease, color .3s ease;
+            /* subtle grain texture via repeating gradient */
+            background-image:
+                radial-gradient(ellipse 80% 50% at 20% 20%, var(--glow-a), transparent),
+                radial-gradient(ellipse 60% 40% at 80% 80%, var(--glow-b), transparent);
+        }
+
+        ::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--scrollbar);
+            border-radius: 4px;
+        }
+
+        ::selection {
+            background: rgba(232, 197, 71, 0.2);
+        }
+
+        /* ═══════════ CARD SHELL ═══════════ */
+        .card-wrap {
+            width: 100%;
+            min-width: 70vw;
+            min-height: 70vh;
+            max-width: 1140px;
+            border-radius: 18px;
+            overflow: hidden;
+            background: var(--card-bg);
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--card-border);
+            transition: box-shadow .5s ease, background .4s ease, border-color .3s ease;
+        }
+
+        .shell {
+            display: flex;
+            min-height: 720px;
+        }
+
+        /* ═══════════ RESPONSIVE ═══════════ */
+        @media (max-width: 900px) {
+            .card-wrap {
+                min-width: 85vw;
+            }
+
+            .shell {
+                flex-direction: column;
+                min-height: auto;
+                display: flex;
+            }
+
+            .shell .left {
+                width: 100%;
+                min-width: 100%;
+                flex: none;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                max-height: none;
+                padding: 24px 20px;
+            }
+
+            .shell .right {
+                max-height: none;
+                padding-bottom: 20px;
+                flex: none;
+            }
+
+            .tabs {
+                padding: 0 20px;
+                overflow-x: auto;
+            }
+
+            .pane {
+                padding: 24px 20px;
+            }
+
+            .grid2 {
+                grid-template-columns: 1fr;
+            }
+
+            .dm {
+                columns: 1;
+            }
+
+            .sg {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .name {
+                font-size: 1.6rem;
+            }
+
+            .bio {
+                font-size: 0.72rem;
+            }
+
+            .btm {
+                padding: 11px 20px;
+            }
+
+            .exp {
+                margin-bottom: 28px;
+                padding-bottom: 28px;
+            }
+
+            .exp-hd {
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            .exp-date {
+                padding-top: 0;
+            }
+
+            .co-row {
+                flex-wrap: wrap;
+            }
+
+            /* Left panel responsive */
+            .shell .left .top-row {
+                flex-wrap: wrap;
+                gap: 14px;
+            }
+
+            .shell .left .icon-group {
+                order: 2;
+            }
+
+            .shell .left .theme-pill {
+                order: 1;
+            }
+
+            .shell .left .status {
+                margin-bottom: 16px;
+            }
+
+            .shell .left .name {
+                font-size: 1.5rem;
+            }
+
+            .shell .left .tagline {
+                font-size: 0.82rem;
+                margin-bottom: 16px;
+            }
+
+            .shell .left .bio {
+                margin-bottom: 20px;
+                line-height: 1.75;
+            }
+
+            .shell .left .cta-row {
+                margin-bottom: 22px;
+            }
+
+            .shell .left .stack {
+                padding-top: 16px;
+            }
+
+            .shell .left .stack-row {
+                font-size: 0.66rem;
+                line-height: 1.9;
+            }
+
+            .shell .left .stack-row strong {
+                min-width: 80px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 16px 10px 32px;
+            }
+
+            .card-wrap {
+                min-width: 92vw;
+                min-height: 80vh;
+                border-radius: 12px;
+            }
+
+            .shell .left {
+                padding: 18px 14px;
+            }
+
+            .shell .right {
+                min-height: auto;
+            }
+
+            .shell {
+                min-height: auto;
+            }
+
+            .top-row {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .icon-group {
+                order: 2;
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .theme-pill {
+                order: 1;
+            }
+
+            .status {
+                margin-bottom: 14px;
+            }
+
+            .name {
+                font-size: 1.4rem;
+            }
+
+            .tagline {
+                font-size: 0.8rem;
+                margin-bottom: 14px;
+            }
+
+            .bio {
+                font-size: 0.7rem;
+                margin-bottom: 18px;
+                line-height: 1.7;
+            }
+
+            .cta-row {
+                gap: 6px;
+            }
+
+            .btn-primary,
+            .btn-ghost {
+                padding: 10px 14px;
+                font-size: 0.68rem;
+            }
+
+            .icon-btn {
+                width: 36px;
+                height: 36px;
+            }
+
+            .stack {
+                padding-top: 14px;
+            }
+
+            .stack-row {
+                font-size: 0.65rem;
+                flex-wrap: wrap;
+            }
+
+            .stack-row strong {
+                min-width: 70px;
+            }
+
+            .tabs {
+                padding: 0 14px;
+            }
+
+            .tab {
+                padding: 12px 8px 10px;
+                font-size: 0.66rem;
+            }
+
+            .pane {
+                padding: 16px 14px;
+            }
+
+            .proj {
+                padding: 14px;
+            }
+
+            .proj-title {
+                font-size: 0.8rem;
+            }
+
+            .proj-desc {
+                font-size: 0.68rem;
+            }
+
+            .proj-tags {
+                gap: 3px;
+            }
+
+            .tag {
+                font-size: 0.58rem;
+                padding: 2px 5px;
+            }
+
+            .sg {
+                grid-template-columns: 1fr 1fr;
+                gap: 6px;
+            }
+
+            .sc {
+                padding: 10px;
+            }
+
+            .sn {
+                font-size: 1.2rem;
+            }
+
+            .sl {
+                font-size: 0.6rem;
+            }
+
+            .di {
+                margin-bottom: 8px;
+            }
+
+            .dc {
+                padding: 7px 10px;
+                font-size: 0.64rem;
+            }
+
+            .exp {
+                margin-bottom: 24px;
+                padding-bottom: 24px;
+            }
+
+            .co {
+                font-size: 0.88rem;
+            }
+
+            .exp-role {
+                font-size: 0.7rem;
+            }
+
+            .exp-bullets li {
+                font-size: 0.7rem;
+            }
+
+            .btm {
+                padding: 10px 14px;
+                justify-content: center;
+            }
+
+            /* Left panel mobile */
+            .shell .left .top-row {
+                gap: 10px;
+                margin-bottom: 22px;
+            }
+
+            .shell .left .icon-group {
+                gap: 8px;
+            }
+
+            .shell .left .icon-group svg {
+                width: 12px;
+                height: 12px;
+            }
+
+            .shell .left .theme-pill {
+                padding: 3px 8px 3px 4px;
+            }
+
+            .shell .left .track {
+                width: 22px;
+                height: 12px;
+            }
+
+            .shell .left .knob {
+                width: 8px;
+                height: 8px;
+            }
+
+            [data-theme="light"] .shell .left .knob {
+                transform: translateX(10px);
+            }
+
+            .shell .left .pill-icon {
+                font-size: 0.66rem;
+            }
+
+            .shell .left .pill-label {
+                font-size: 0.56rem;
+            }
+
+            .shell .left .status {
+                font-size: 0.62rem;
+                margin-bottom: 14px;
+            }
+
+            .shell .left .dot {
+                width: 5px;
+                height: 5px;
+            }
+
+            .shell .left .name {
+                font-size: 1.3rem;
+                margin-bottom: 4px;
+            }
+
+            .shell .left .tagline {
+                font-size: 0.76rem;
+            }
+
+            .shell .left .bio {
+                font-size: 0.68rem;
+                line-height: 1.7;
+            }
+
+            .shell .left .cta-row {
+                flex-direction: column;
+                gap: 6px;
+                margin-bottom: 20px;
+            }
+
+            .shell .left .btn-primary,
+            .shell .left .btn-ghost {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .shell .left .icon-btn {
+                width: 100%;
+                height: 34px;
+            }
+
+            .shell .left .stack {
+                gap: 2px;
+            }
+
+            .shell .left .stack-row {
+                font-size: 0.62rem;
+                line-height: 2.2;
+            }
+
+            .shell .left .stack-row strong {
+                min-width: 65px;
+                display: inline-block;
+            }
+
+            .shell .left .stack-row span {
+                display: inline;
+            }
+
+            /* New sections responsive */
+            .skills-grid {
+                gap: 12px;
+            }
+
+            .skill-category {
+                padding: 12px;
+            }
+
+            .skill-title {
+                font-size: 0.76rem;
+            }
+
+            .skill-tags .tag {
+                font-size: 0.56rem;
+                padding: 3px 6px;
+            }
+
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .edu-item {
+                padding: 14px;
+            }
+
+            .edu-school {
+                font-size: 0.8rem;
+            }
+
+            .edu-degree {
+                font-size: 0.72rem;
+            }
+        }
+
+        /* ════════════ LEFT PANEL ════════════ */
+        .left {
+            width: 355px;
+            min-width: 355px;
+            background: var(--left-bg);
+            border-right: 1px solid var(--border);
+            padding: 30px 26px 26px;
+            display: flex;
+            flex-direction: column;
+            max-height: 780px;
+            overflow-y: auto;
+            transition: background .4s ease, border-color .3s ease;
+        }
+
+        .top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .icon-group {
+            display: flex;
+            gap: 10px;
+            color: var(--muted);
+        }
+
+        .icon-group svg {
+            width: 14px;
+            height: 14px;
+            cursor: pointer;
+            transition: color .2s;
+        }
+
+        .icon-group svg:hover {
+            color: var(--text);
+        }
+
+        /* Theme toggle pill */
+        .theme-pill {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            cursor: pointer;
+            background: var(--toggle-bg);
+            border: 1px solid var(--toggle-border);
+            border-radius: 20px;
+            padding: 4px 10px 4px 5px;
+            transition: background .3s, border-color .3s;
+            user-select: none;
+        }
+
+        .theme-pill:hover {
+            border-color: var(--muted);
+        }
+
+        .track {
+            width: 26px;
+            height: 14px;
+            background: var(--toggle-bg);
+            border: 1px solid var(--toggle-border);
+            border-radius: 20px;
+            position: relative;
+            transition: background .3s;
+        }
+
+        .knob {
+            width: 10px;
+            height: 10px;
+            background: var(--toggle-knob);
+            border-radius: 50%;
+            position: absolute;
+            top: 1px;
+            left: 1px;
+            transition: transform .32s cubic-bezier(.34, 1.56, .64, 1), background .3s;
+        }
+
+        [data-theme="light"] .knob {
+            transform: translateX(12px);
+        }
+
+        .pill-icon {
+            font-size: 0.72rem;
+            line-height: 1;
+        }
+
+        .pill-label {
+            font-size: 0.62rem;
+            color: var(--muted);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            transition: color .3s;
+        }
+
+        /* Status */
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.66rem;
+            color: #4ec87a;
+            margin-bottom: 20px;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .contact-row {
+            font-size: 0.7rem;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #4ec87a;
+            box-shadow: 0 0 5px rgba(78, 200, 122, 0.7);
+            animation: blink 2.2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: .25
+            }
+        }
+
+        /* Name / tagline */
+        .name {
+            font-family: 'Sora', sans-serif;
+            font-weight: 800;
+            font-size: 2rem;
+            letter-spacing: -0.03em;
+            line-height: 1;
+            margin-bottom: 6px;
+            color: var(--text-strong);
+            transition: color .3s;
+        }
+
+        .tagline {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--muted);
+            font-size: 0.88rem;
+            margin-bottom: 20px;
+            letter-spacing: 0.01em;
+            transition: color .3s;
+        }
+
+        .tagline .spark {
+            color: var(--accent);
+            font-style: normal;
+        }
+
+        .bio {
+            font-size: 0.775rem;
+            line-height: 1.8;
+            color: var(--bio-color);
+            margin-bottom: 26px;
+            transition: color .3s;
+        }
+
+        .bio strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        /* CTA row */
+        .cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-bottom: 28px;
+        }
+
+        .btn-primary {
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border: none;
+            padding: 8px 15px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.71rem;
+            font-weight: 500;
+            cursor: pointer;
+            letter-spacing: 0.04em;
+            border-radius: 4px;
+            transition: background .2s, color .2s, transform .15s, box-shadow .2s;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent);
+            color: #0f0f11;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(232, 197, 71, 0.28);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--muted);
+            border: 1px solid var(--border);
+            padding: 7px 11px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.71rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: color .2s, border-color .2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-ghost:hover {
+            color: var(--text);
+            border-color: var(--muted);
+        }
+
+        .icon-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--muted);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: color .2s, border-color .2s, transform .15s;
+        }
+
+        .icon-btn:hover {
+            color: var(--text);
+            border-color: var(--muted);
+            transform: translateY(-1px);
+        }
+
+        .icon-btn svg {
+            width: 13px;
+            height: 13px;
+        }
+
+        /* Stack */
+        .stack {
+            margin-top: auto;
+            padding-top: 18px;
+            border-top: 1px solid var(--border);
+            transition: border-color .3s;
+        }
+
+        .stack-row {
+            display: flex;
+            font-size: 0.69rem;
+            line-height: 1.95;
+            gap: 6px;
+        }
+
+        .stack-row strong {
+            color: var(--stack-key);
+            min-width: 96px;
+            font-weight: 500;
+            transition: color .3s;
+        }
+
+        .stack-row span {
+            color: var(--stack-val);
+            transition: color .3s;
+        }
+
+        /* ════════════ RIGHT PANEL ════════════ */
+        .right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: var(--right-bg);
+            max-height: 780px;
+            overflow-y: auto;
+            transition: background .4s ease;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            padding: 0 30px;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: var(--nav-bg);
+            z-index: 10;
+            transition: background .4s, border-color .3s;
+        }
+
+        .tab {
+            padding: 16px 13px 14px;
+            font-size: 0.74rem;
+            color: var(--muted);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: color .2s, border-color .2s;
+            letter-spacing: 0.03em;
+            position: relative;
+            top: 1px;
+            user-select: none;
+        }
+
+        .tab:hover {
+            color: var(--text);
+        }
+
+        .tab.active {
+            color: var(--text);
+            border-bottom-color: var(--accent);
+        }
+
+        /* Content */
+        .pane {
+            display: none;
+            padding: 34px 30px;
+            animation: up .28s ease;
+        }
+
+        .pane.active {
+            display: block;
+        }
+
+        @keyframes up {
+            from {
+                opacity: 0;
+                transform: translateY(7px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        /* Experience */
+        .exp {
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+            transition: border-color .3s;
+        }
+
+        .exp:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .exp-hd {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 5px;
+            gap: 10px;
+        }
+
+        .co-row {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            flex-wrap: wrap;
+        }
+
+        .co {
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 0.98rem;
+            letter-spacing: -0.01em;
+            color: var(--text-strong);
+            transition: color .3s;
+        }
+
+        .badge {
+            font-size: 0.6rem;
+            padding: 2px 7px;
+            border-radius: 2px;
+            letter-spacing: 0.07em;
+            font-weight: 500;
+            text-transform: uppercase;
+            border: 1px solid var(--tag-border);
+            color: var(--muted);
+            background: var(--tag-bg);
+            transition: all .3s;
+        }
+
+        .badge.i {
+            border-color: rgba(232, 197, 71, 0.35);
+            color: var(--accent);
+            background: rgba(232, 197, 71, 0.07);
+        }
+
+        .badge.f {
+            border-color: rgba(91, 141, 238, 0.35);
+            color: var(--accent2);
+            background: rgba(91, 141, 238, 0.07);
+        }
+
+        .badge.r {
+            border-color: rgba(78, 200, 122, 0.35);
+            color: #4ec87a;
+            background: rgba(78, 200, 122, 0.07);
+        }
+
+        .exp-date {
+            font-size: 0.69rem;
+            color: var(--muted);
+            white-space: nowrap;
+            letter-spacing: 0.02em;
+            padding-top: 3px;
+            transition: color .3s;
+        }
+
+        .exp-role {
+            font-size: 0.75rem;
+            color: var(--muted);
+            margin-bottom: 13px;
+            letter-spacing: 0.03em;
+            transition: color .3s;
+        }
+
+        .exp-bullets {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .exp-bullets li {
+            font-size: 0.76rem;
+            color: var(--bio-color);
+            line-height: 1.72;
+            padding-left: 15px;
+            position: relative;
+            transition: color .3s;
+        }
+
+        .exp-bullets li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: .92rem;
+            line-height: 1.52;
+        }
+
+        /* Services */
+        .grid2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .proj {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 18px;
+            transition: border-color .2s, transform .2s, box-shadow .2s, background .3s;
+            cursor: pointer;
+            background: var(--tag-bg);
+        }
+
+        .proj:hover {
+            border-color: var(--project-hover-border);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .proj-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .proj-icon {
+            font-size: 1.2rem;
+        }
+
+        .proj-arrow {
+            color: var(--muted);
+            font-size: .9rem;
+            transition: color .2s, transform .2s;
+        }
+
+        .proj:hover .proj-arrow {
+            color: var(--accent);
+            transform: translate(2px, -2px);
+        }
+
+        .proj-title {
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 0.86rem;
+            margin-bottom: 5px;
+            letter-spacing: -0.01em;
+            color: var(--text-strong);
+            transition: color .3s;
+        }
+
+        .proj-desc {
+            font-size: 0.72rem;
+            color: var(--muted);
+            line-height: 1.65;
+            margin-bottom: 12px;
+            transition: color .3s;
+        }
+
+        .proj-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .tag {
+            font-size: 0.61rem;
+            padding: 2px 6px;
+            border: 1px solid var(--tag-border);
+            border-radius: 2px;
+            color: var(--muted);
+            letter-spacing: 0.04em;
+            transition: all .3s;
+        }
+
+
+        /* Skills */
+        .skills-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .skill-category {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            background: var(--tag-bg);
+        }
+
+        .skill-title {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            font-size: 0.82rem;
+            color: var(--text-strong);
+            margin-bottom: 10px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .skill-tags .tag {
+            font-size: 0.62rem;
+            padding: 4px 8px;
+        }
+
+
+        /* Bottom bar */
+        .btm {
+            margin-top: auto;
+            padding: 11px 30px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+            color: var(--muted);
+            transition: border-color .3s;
+        }
+
+        .btm svg {
+            width: 14px;
+            height: 14px;
+            cursor: pointer;
+            transition: color .2s;
+        }
+
+        .btm svg:hover {
+            color: var(--text);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card-wrap">
+        <div class="shell">
+
+            <!-- ═══ LEFT ═══ -->
+            <aside class="left">
+                <div class="top-row">
+
+                    <div class="theme-pill" onclick="toggleTheme()" id="pill">
+                        <div class="track">
+                            <div class="knob"></div>
+                        </div>
+                        <span class="pill-icon" id="picon">☀️</span>
+                        <span class="pill-label" id="plabel">Light</span>
+                    </div>
+                </div>
+
+                <div class="status"><span class="dot"></span> Available for work</div>
+                <div class="name">Anthony Carreon</div>
+                <div class="tagline">Data Engineer & BI Developer <span class="spark">⚡</span></div>
+
+                <p class="bio">
+                    Hey there 👋 I'm <strong>Tony</strong> — a full-stack developer obsessed with the overlap of
+                    software development, data engineering, and business intelligence. I build things for the web that
+                    are fast, accessible, and <strong>genuinely enjoyable</strong> to use.<br><br>
+                    Currently deep-diving into <strong>Artificial Intelligence</strong>. I love pushing pixels as much
+                    as I love optimizing queries.
+                </p>
+
+                <div class="contact-info">
+                    <div class="contact-row">📍 Ballay, Bauang La Union, Philippines 2501</div>
+                    <div class="contact-row">📱 +63 915 9394 927</div>
+                    <div class="contact-row">✉️ anthonydaetcarreon@gmail.com</div>
+                </div>
+
+                <div class="cta-row">
+                    <button class="icon-btn" title="facebook"
+                        onclick="window.open('https://www.facebook.com/anthonycarreon1', '_blank')">
+                        <svg fill="#6e6e6e" height="64px" width="64px" version="1.1" id="Layer_1"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="-143 145 512 512" xml:space="preserve" stroke="#6e6e6e">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <g>
+                                    <path
+                                        d="M113,145c-141.4,0-256,114.6-256,256s114.6,256,256,256s256-114.6,256-256S254.4,145,113,145z M272.8,560.7 c-20.8,20.8-44.9,37.1-71.8,48.4c-27.8,11.8-57.4,17.7-88,17.7c-30.5,0-60.1-6-88-17.7c-26.9-11.4-51.1-27.7-71.8-48.4 c-20.8-20.8-37.1-44.9-48.4-71.8C-107,461.1-113,431.5-113,401s6-60.1,17.7-88c11.4-26.9,27.7-51.1,48.4-71.8 c20.9-20.8,45-37.1,71.9-48.5C52.9,181,82.5,175,113,175s60.1,6,88,17.7c26.9,11.4,51.1,27.7,71.8,48.4 c20.8,20.8,37.1,44.9,48.4,71.8c11.8,27.8,17.7,57.4,17.7,88c0,30.5-6,60.1-17.7,88C309.8,515.8,293.5,540,272.8,560.7z">
+                                    </path>
+                                    <path
+                                        d="M146.8,313.7c10.3,0,21.3,3.2,21.3,3.2l6.6-39.2c0,0-14-4.8-47.4-4.8c-20.5,0-32.4,7.8-41.1,19.3 c-8.2,10.9-8.5,28.4-8.5,39.7v25.7H51.2v38.3h26.5v133h49.6v-133h39.3l2.9-38.3h-42.2v-29.9C127.3,317.4,136.5,313.7,146.8,313.7z">
+                                    </path>
+                                </g>
+                            </g>
+                        </svg>
+                    </button>
+                    <button class="icon-btn" title="LinkedIn"
+                        onclick="window.open('https://www.linkedin.com/in/anthonycarreon1', '_blank')">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
+                            <circle cx="4" cy="4" r="2" />
+                        </svg>
+                    </button>
+                    <button class="icon-btn" title="Email"
+                        onclick="window.location.href='mailto:anthonydaetcarreon@gmail.com'">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <rect x="2" y="4" width="20" height="16" rx="2" />
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="stack">
+                    <div class="stack-row"><strong>Data Engineering</strong><span>SSIS, ETL, BigQuery, SQL Server</span>
+                    </div>
+                    <div class="stack-row"><strong>BI & Analytics</strong><span>Power BI, Tableau, SSRS</span></div>
+                    <div class="stack-row"><strong>Development</strong><span>C#, .NET Core, ASP.NET Core</span></div>
+                    <div class="stack-row"><strong>Database</strong><span>SQL, Data Modeling, DAX</span></div>
+                    <div class="stack-row"><strong>Cloud</strong><span>Azure DevOps, SharePoint</span></div>
+                    <div class="stack-row"><strong>Tools</strong><span>Git, Agile/Scrum, TFS</span></div>
+                </div>
+            </aside>
+
+            <!-- ═══ RIGHT ═══ -->
+            <main class="right">
+                <nav class="tabs">
+
+                    <div class="tab active" onclick="sw('experience')">Experience</div>
+                    <div class="tab" onclick="sw('services')">Services</div>
+                </nav>
+
+                <!-- EXPERIENCE -->
+                <div class="pane active" id="experience">
+                    <div class="exp">
+                        <div class="exp-hd">
+                            <div>
+                                <div class="co-row"><span class="co">Blackhawk Industrial Inc.</span><span
+                                        class="badge f">Full-time</span><span class="badge">Laguna</span> <span
+                                        class="badge r">remote</span></div>
+                                <div class="exp-role">Sr. Business Intelligence Developer</div>
+                            </div>
+                            <div class="exp-date">Dec 2023 → Present</div>
+                        </div>
+                        <ul class="exp-bullets">
+                            <li>Migrated legacy system by integrating a Power Automate workflow and SharePoint list,
+                                improving efficiency and data accessibility</li>
+                            <li>Fine-tuned SQL queries within SQL Server and created optimized SSIS packages for
+                                ingesting data from different sources</li>
+                            <li>Performed SSRS and Power BI reporting</li>
+                            <li>Project: Migrated SSIS packages from SQL Server 2008 to 2022, improving performance —
+                                reducing data ingestion time by 80% (from 3-4 hours to 50 min - 1.5 hours)</li>
+                        </ul>
+                    </div>
+                    <div class="exp">
+                        <div class="exp-hd">
+                            <div>
+                                <div class="co-row"><span class="co">Shakey's Pizza Asia Ventures Inc.</span><span
+                                        class="badge f">Full-time</span><span class="badge">Parañaque</span> <span
+                                        class="badge r">remote</span></div>
+                                <div class="exp-role">Sr. Business Intelligence Developer</div>
+                            </div>
+                            <div class="exp-date">Jan 2023 → Dec 2023</div>
+                        </div>
+                        <ul class="exp-bullets">
+                            <li>Spearheaded improvements to data source for Power BI and Tableau reports, elevating
+                                report quality and reliability</li>
+                            <li>Implemented secure permissions for reports and data sources, ensuring secure access and
+                                data governance</li>
+                            <li>Project: Enhanced data warehouse by implementing ETL processes in BigQuery and SSIS,
+                                improving Tableau report data quality by 40%</li>
+                        </ul>
+                    </div>
+                    <div class="exp">
+                        <div class="exp-hd">
+                            <div>
+                                <div class="co-row"><span class="co">Yondu Inc.</span><span
+                                        class="badge f">Full-time</span><span class="badge">Taguig</span> <span
+                                        class="badge r">remote</span> </div>
+                                <div class="exp-role">Jr. Software Engineer / BI Developer</div>
+                            </div>
+                            <div class="exp-date">Oct 2021 → Jan 2023</div>
+                        </div>
+                        <ul class="exp-bullets">
+                            <li>Fine-tuned intricate queries within Google BigQuery, SQL Server and applied database
+                                optimization methods</li>
+                            <li>Applied best practices in data modeling for table normalization, leading to increased
+                                data integrity</li>
+                            <li>Created flexible dynamic reports using Tableau for easy data access and decision-making
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="exp">
+                        <div class="exp-hd">
+                            <div>
+                                <div class="co-row"><span class="co">Universal Leaf Philippines Inc.</span><span
+                                        class="badge f">Full-time</span><span class="badge">La Union</span> <span
+                                        class="badge r">remote</span></div>
+                                <div class="exp-role">BI Developer / Supervisor I</div>
+                            </div>
+                            <div class="exp-date">Aug 2019 → Jul 2021</div>
+                        </div>
+                        <ul class="exp-bullets">
+                            <li>Architected a real-time collaboration layer using CRDTs and WebSockets, reducing merge
+                                conflicts by 94% across 3,000+ daily active users</li>
+                            <li>Migrated legacy REST endpoints to tRPC with end-to-end type safety, cutting runtime type
+                                errors in production to near zero</li>
+                            <li>Designed and shipped a drag-and-drop workflow builder automating 120K+ tasks per month
+                            </li>
+                            <li>Led performance overhaul of the dashboard — LCP dropped from 4.2s to 0.9s via code
+                                splitting and edge caching</li>
+                        </ul>
+                    </div>
+                    <div class="exp">
+                        <div class="exp-hd">
+                            <div>
+                                <div class="co-row"><span class="co">Tarlac City Water District</span><span
+                                        class="badge f">Full-time</span><span class="badge">Mandaluyong</span></div>
+                                <div class="exp-role">Programmer</div>
+                            </div>
+                            <div class="exp-date">Jul 2018 → Aug 2019</div>
+                        </div>
+                        <ul class="exp-bullets">
+                            <li>Modernized collection and billing system by migrating from outdated programming language
+                            </li>
+                            <li>Implemented industry-standard programming techniques, optimizing code quality and system
+                                performance</li>
+                            <li>Optimized query performance for transaction ledgers, significantly enhancing data
+                                retrieval speed</li>
+                        </ul>
+                    </div>
+                    <div class="exp">
+                        <div class="exp-hd">
+                            <div>
+                                <div class="co-row"><span class="co">JVP BreadKing Food Corp.</span><span
+                                        class="badge f">Full-time</span><span class="badge">Tarlac</span>
+                                    <span class="badge r">remote</span>
+                                </div>
+                                <div class="exp-role">Jr. Programmer</div>
+                            </div>
+                            <div class="exp-date">Jul 2017 → Jun 2018</div>
+                        </div>
+                        <ul class="exp-bullets">
+                            <li>Developed an employee self-service platform and improved the in-house timekeeping system
+                            </li>
+                            <li>Revamped the ordering system using standard programming techniques</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Services -->
+                <div class="pane" id="services">
+                    <div class="grid2">
+                        <div class="proj">
+                            <div class="proj-top">
+                                <span class="proj-icon">🗺️</span>
+
+                            </div>
+                            <div class="proj-title">Training Services</div>
+                            <div class="proj-desc">
+                                1-on-1 or group hands-on training in computer basics, programming, and essential digital
+                                tools—designed to help you learn fast, build confidence, and apply skills in real-world
+                                tasks.
+                            </div>
+                        </div>
+
+                        <div class="proj">
+                            <div class="proj-top">
+                                <span class="proj-icon">🛠️</span>
+
+                            </div>
+                            <div class="proj-title">Tech Support Services</div>
+                            <div class="proj-desc">
+                                Fast and reliable support to fix issues, set up devices, and keep your systems running
+                                smoothly—so you can focus on your work without interruptions.
+                            </div>
+                        </div>
+
+                        <div class="proj">
+                            <div class="proj-top">
+                                <span class="proj-icon">💻</span>
+
+                            </div>
+                            <div class="proj-title">Custom Software Development</div>
+                            <div class="proj-desc">
+                                Build powerful, custom solutions tailored to your needs—whether it's a website or a full
+                                system—to streamline your workflow and scale your business.
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="btm">
+                    <div class="proj-desc">
+                        Interested? Let’s talk—email or call me anytime.
+                    </div>
+                </div>
+            </main>
         </div>
-        <div class="sidebar-info_more">
-          <div class="separator"></div>
-          <ul class="contacts-list">
-            <li class="contact-item">
-              <div class="icon-box">
-                <ion-icon name="mail-outline"></ion-icon>
-              </div>
-              <div class="contact-info">
-                <p class="contact-title">Email</p>
-                <a href="mailto:siaknitonton@gmail.com" class="contact-link">siaknitonton
-                </a>
-              </div>
-            </li>
-            <li class="contact-item">
-              <div class="icon-box">
-                <ion-icon name="phone-portrait-outline"></ion-icon>
-              </div>
-              <div class="contact-info">
-                <p class="contact-title">Phone</p>
-                <a href="tel:+12133522795" class="contact-link">+63 915 939 4927</a>
-              </div>
-            </li>
-            <li class="contact-item">
-              <div class="icon-box">
-                <ion-icon name="calendar-outline"></ion-icon>
-              </div>
-              <div class="contact-info">
-                <p class="contact-title">Birthday</p>
-                <time datetime="1996-09-01">August 1, 1996</time>
-              </div>
-            </li>
-            <li class="contact-item">
-              <div class="icon-box">
-                <ion-icon name="location-outline"></ion-icon>
-              </div>
-              <div class="contact-info">
-                <p class="contact-title">Location</p>
-                <address>Ballay, Bauang La Union Philippines 2511</address>
-              </div>
-            </li>
-          </ul>
-          <div class="separator"></div>
-          <ul class="social-list">
-            <li class="social-item">
-              <a href="#" class="social-link">
-                <ion-icon name="logo-facebook"></ion-icon>
-              </a>
-            </li>
-            <li class="social-item">
-              <a href="#" class="social-link">
-                <ion-icon name="logo-twitter"></ion-icon>
-              </a>
-            </li>
-            <li class="social-item">
-              <a href="#" class="social-link">
-                <ion-icon name="logo-instagram"></ion-icon>
-              </a>
-            </li>
-            <li class="social-item">
-              <a href="https://siaknitonton.github.io/SiakNiTonTon-Portfolio/Trainings.html" target="_blank" class="social-link">
-                <ion-icon name="desktop-outline"></ion-icon>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </aside>
-      <!--
-      - #main-content
-    -->
-      <div class="main-content">
-        <!--
-        - #NAVBAR
-      -->
-        <nav class="navbar">
-          <ul class="navbar-list">
-            <li class="navbar-item">
-              <button class="navbar-link  active" data-nav-link>About</button>
-            </li>
-            <li class="navbar-item">
-              <button class="navbar-link" data-nav-link>Resume</button>
-            </li>
-            
-            <li class="navbar-item">
-              <button class="navbar-link" data-nav-link>Portfolio</button>
-            </li>
-            
-            
-            <li class="navbar-item">
-              <button class="navbar-link" data-nav-link>Contact</button>
-            </li>
-          </ul>
-        </nav>
-        <!--
-        - #ABOUT
-      -->
-        <article class="about  active" data-page="about">
-          <header>
-            <h2 class="h2 article-title">About me</h2>
-          </header>
-          <section class="about-text">
-            <p> Hey! I’m Anthony—most folks call me Tonying or just Tony. I’m into all things tech and love finding simple solutions to complicated problems. I enjoy working with teams, learning new things, and keeping the mood light with a little sarcasm and humor along the way.<br> <br>
-               If you’re looking for someone who’s genuinely curious, always up for a challenge, and believes work should be both productive and enjoyable, you’ve come to the right place. Feel free to interview me—just be ready for a laugh or two! 
-            </p>
-          </section>
-          
-          <section class="service">
-            <h3 class="h3 service-title">What i'm doing</h3>
-            <ul class="service-list">
+    </div>
 
-              <li class="service-item">
-                
-                <div class="service-content-box">
-                  <h4 class="h4 service-item-title">Data Engineering</h4>
-                  <p class="service-item-text">I wrangle big data, build pipelines, and keep everything flowing so you always get the insights you need.</p>
-                </div>
-              </li>
+    <script>
+        const TABS = ['experience', 'services'];
+        function sw(id) {
+            document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', TABS[i] === id));
+            document.querySelectorAll('.pane').forEach(p => p.classList.toggle('active', p.id === id));
+        }
 
-               <li class="service-item">
-                
-                <div class="service-content-box">
-                  <h4 class="h4 service-item-title">Data Visualization</h4>
-                  <p class="service-item-text">Turning your data and reports into clear, attractive charts that tell the story at a glance.</p>
-                </div>
-              </li>
-
-              <li class="service-item">
-                
-                <div class="service-content-box">
-                  <h4 class="h4 service-item-title">Software Development</h4>
-                  <p class="service-item-text">Creating custom apps and tools that solve your everyday problems—no tech jargon included.</p>
-                </div>
-              </li>
-
-              <li class="service-item">
-                
-                <div class="service-content-box">
-                  <h4 class="h4 service-item-title">Custom Automation</h4>
-                  <p class="service-item-text">Automating boring tasks so you can focus on what you actually enjoy.</p>
-                </div>
-              </li>
+        let dark = true;
+        function toggleTheme() {
+            dark = !dark;
+            document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+            document.getElementById('picon').textContent = dark ? '☀️' : '🌙';
+            document.getElementById('plabel').textContent = dark ? 'Light' : 'Dark';
+        }
 
 
-              <li class="service-item">
-                
-                <div class="service-content-box">
-                  <h4 class="h4 service-item-title">Local & Forex Trading</h4>
-                  <p class="service-item-text">Sharing tips and know-how for trading locally and on the global forex market.</p>
-                </div>
-              </li>
+    </script>
+</body>
 
-              <li class="service-item">
-                
-                <div class="service-content-box">
-                  <h4 class="h4 service-item-title">Simple Training Guides</h4>
-                  <p class="service-item-text">Making new tools easy to learn with straightforward, no-stress guides.</p>
-                </div>
-              </li>
-
-
-              <li class="service-item">
-                
-                <div class="service-content-box">
-                  <h4 class="h4 service-item-title">Web Development</h4>
-                  <p class="service-item-text">Building websites that look great and work exactly how you want them to.</p>
-                </div>
-              </li>
-
-              <li class="service-item">
-                
-                <div class="service-content-box">
-                  <h4 class="h4 service-item-title">Tech Support & IT Solutions</h4>
-                  <p class="service-item-text">From networks to laptops and everything in between, I help keep your tech in top shape.</p>
-                </div>
-              </li>
-
-              <li class="service-item">
-                
-                <div class="service-content-box">
-                  <h4 class="h4 service-item-title">Tech Troubleshooting</h4>
-                  <p class="service-item-text">Got tech troubles? I jump in and fix the issues, and get things running without the hassle.</p>
-                </div>
-              </li>
-            </ul>
-          </section>
-          <!--
-          <section class="testimonials">
-            <h3 class="h3 testimonials-title">Testimonials</h3>
-            <ul class="testimonials-list has-scrollbar">
-              <li class="testimonials-item">
-                <div class="content-card" data-testimonials-item>
-                  <figure class="testimonials-avatar-box">
-                    <img src="./assets/images/avatar-1.png" alt="Daniel lewis" width="60" data-testimonials-avatar>
-                  </figure>
-                  <h4 class="h4 testimonials-item-title" data-testimonials-title>Daniel lewis</h4>
-                  <div class="testimonials-text" data-testimonials-text>
-                    <p> Richard was hired to create a corporate identity. We were very pleased with the work done. She has a lot of experience and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt consectetur adipiscing elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia. </p>
-                  </div>
-                </div>
-              </li>
-              <li class="testimonials-item">
-                <div class="content-card" data-testimonials-item>
-                  <figure class="testimonials-avatar-box">
-                    <img src="./assets/images/avatar-2.png" alt="Jessica miller" width="60" data-testimonials-avatar>
-                  </figure>
-                  <h4 class="h4 testimonials-item-title" data-testimonials-title>Jessica miller</h4>
-                  <div class="testimonials-text" data-testimonials-text>
-                    <p> Richard was hired to create a corporate identity. We were very pleased with the work done. She has a lot of experience and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt consectetur adipiscing elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia. </p>
-                  </div>
-                </div>
-              </li>
-              <li class="testimonials-item">
-                <div class="content-card" data-testimonials-item>
-                  <figure class="testimonials-avatar-box">
-                    <img src="./assets/images/avatar-3.png" alt="Emily evans" width="60" data-testimonials-avatar>
-                  </figure>
-                  <h4 class="h4 testimonials-item-title" data-testimonials-title>Emily evans</h4>
-                  <div class="testimonials-text" data-testimonials-text>
-                    <p> Richard was hired to create a corporate identity. We were very pleased with the work done. She has a lot of experience and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt consectetur adipiscing elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia. </p>
-                  </div>
-                </div>
-              </li>
-              <li class="testimonials-item">
-                <div class="content-card" data-testimonials-item>
-                  <figure class="testimonials-avatar-box">
-                    <img src="./assets/images/avatar-4.png" alt="Henry william" width="60" data-testimonials-avatar>
-                  </figure>
-                  <h4 class="h4 testimonials-item-title" data-testimonials-title>Henry william</h4>
-                  <div class="testimonials-text" data-testimonials-text>
-                    <p> Richard was hired to create a corporate identity. We were very pleased with the work done. She has a lot of experience and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt consectetur adipiscing elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia. </p>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </section>
-        -->
-          
-          
-          <div class="modal-container" data-modal-container>
-            <div class="overlay" data-overlay></div>
-            <section class="testimonials-modal">
-              <button class="modal-close-btn" data-modal-close-btn>
-                <ion-icon name="close-outline"></ion-icon>
-              </button>
-              <div class="modal-img-wrapper">
-                <figure class="modal-avatar-box">
-                  <img src="./assets/images/avatar-1.png" alt="Daniel lewis" width="80" data-modal-img>
-                </figure>
-                <img src="./assets/images/icon-quote.svg" alt="quote icon">
-              </div>
-              <div class="modal-content">
-                <h4 class="h3 modal-title" data-modal-title>Daniel lewis</h4>
-                <time datetime="2021-06-14">14 June, 2021</time>
-                <div data-modal-text>
-                  <p> Richard was hired to create a corporate identity. We were very pleased with the work done. She has a lot of experience and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt consectetur adipiscing elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia. </p>
-                </div>
-              </div>
-            </section>
-          </div>
-          
-        
-        
-        </article>
-        <!--
-        - #RESUME
-      -->
-        <article class="resume" data-page="resume">
-          <header>
-            <h2 class="h2 article-title">Resume</h2>
-          </header>
-          <section class="timeline">
-            <div class="title-wrapper">
-              <div class="icon-box">
-                <ion-icon name="book-outline"></ion-icon>
-              </div>
-              <h3 class="h3">Education</h3>
-            </div>
-            <ol class="timeline-list">
-              <li class="timeline-item">
-                <h4 class="h4 timeline-item-title">Bachelor of Science in Information Technology </h4>
-                <span>2013 - 2017</span>
-                <p class="timeline-text"> Don Mariano Marcos Memorial State University Mid-La Union Campus (DMMMSU - MLUC) </p>
-                <p class="timeline-text"> City of San Fernando La Union, Philippines </p>
-              </li>
-              </li>
-            </ol>
-          </section>
-          <section class="timeline">
-            <div class="title-wrapper">
-              <div class="icon-box">
-                <ion-icon name="book-outline"></ion-icon>
-              </div>
-              <h3 class="h3">Experience</h3>
-            </div>
-            <ol class="timeline-list">
-              <li class="timeline-item">
-                <h4 class="h4 timeline-item-title">Sr. Business Intelligence Developer</h4>
-                <span>Blackhawk Industrial (Baguio, Philippines)</span>
-                <p class="timeline-text"> Enhanced a legacy system by integrating a Power Automate workflow and SharePoint list to improve efficiency and data accessibility, fine-tuned SQL queries and optimized existing SSIS and SSRS components, significantly reducing data ingestion time by 80%—from an average of three to four hours down to just 50 minutes to 1.5 hours. </p>
-              </li>
-              <li class="timeline-item">
-                <h4 class="h4 timeline-item-title">Sr. Business Intelligence Developer</h4>
-                <span>Shakey’s Pizza Asia Ventures Inc. (Paranaque, Philippines)</span>
-                <p class="timeline-text"> Led strategic enhancements to the data source warehouse, resulting in a 40% improvement in the quality and reliability of Tableau reports; implemented robust security and permission controls to safeguard data access, and demonstrated cross-functional leadership in establishing data governance standards, strengthening data integrity, and fostering a culture of responsible data management. </p>
-              </li>
-              <li class="timeline-item">
-                <h4 class="h4 timeline-item-title">Jr. Software Engineer / Software Engineer (Business Intelligence Developer) – (Deployed in Shakey’s)</h4>
-                <span>Yondu Inc. (Taguig, Philippines)</span>
-                <p class="timeline-text"> Fine-tuned complex queries in Google BigQuery using advanced SQL and optimization techniques, applied best practices in data modeling to ensure normalization and improve data integrity, and developed dynamic, user-friendly reports to enable efficient data access and support data-driven decision-making. </p>
-              </li>
-              <li class="timeline-item">
-                <h4 class="h4 timeline-item-title">Business Intelligence Developer / Supervisor I</h4>
-                <span>Universal Leaf Philippines Inc. (La Union, Philippines)</span>
-                <p class="timeline-text"> Led the initial implementation of Business Intelligence development using Power BI Service, applying best practices in data extraction, transformation, and data warehouse management to streamline data processing and enhance data-driven decision-making through improved analysis and reporting. </p>
-                
-              </li>
-              <li class="timeline-item">
-                <h4 class="h4 timeline-item-title">Programmer</h4>
-                <span>Tarlac City Water District & PrimeWater Infrastructure Corp. (Mandaluyong, Philippines)</span>
-                <p class="timeline-text"> Modernized the collection and billing system by migrating from an outdated to a modern programming language, and optimized transaction ledger queries, resulting in a 70% increase in data retrieval speed and significantly improved operational efficiency; additionally, developed a web application for managing laboratory results and appointment scheduling, enhancing service accessibility and workflow automation. </p>
-                </li>
-              <li class="timeline-item">
-                <h4 class="h4 timeline-item-title">Jr. Programmer</h4>
-                <span>JVP BreadKing Food Corp. (Tarlac, Philippines)</span>
-                <p class="timeline-text"> Independently developed an employee self-service web platform, enhanced the timekeeping system—achieving a 70% improvement in tracking accuracy—and optimized the ordering system through algorithm enhancements and process streamlining, resulting in a 40% improvement in performance and a 30% increase in operational efficiency.</p>
-              </li>
-            </ol>
-          </section>
-          
-        </article>
-        <!--
-        - #PORTFOLIO
-      -->
-        <article class="portfolio" data-page="portfolio">
-          <header>
-            <h2 class="h2 article-title">Portfolio</h2>
-          </header>
-          <section class="projects">
-            <ul class="filter-list">
-              <li class="filter-item">
-                <button class="active" data-filter-btn>All</button>
-              </li>
-              <li class="filter-item">
-                <button data-filter-btn>Tableau Report</button>
-              </li>
-              <li class="filter-item">
-                <button data-filter-btn>Power BI</button>
-              </li>
-              <li class="filter-item">
-                <button data-filter-btn>Applications</button>
-              </li>
-              <li class="filter-item">
-                <button data-filter-btn>Web development</button>
-              </li>
-            </ul>
-            <div class="filter-select-box">
-              <button class="filter-select" data-select>
-                <div class="select-value" data-selecct-value>Select category</div>
-                <div class="select-icon">
-                  <ion-icon name="chevron-down"></ion-icon>
-                </div>
-              </button>
-              <ul class="select-list">
-                <li class="select-item">
-                  <button data-select-item>All</button>
-                </li>
-                <li class="select-item">
-                  <button data-select-item>Tableau Report</button>
-                </li>
-                <li class="select-item">
-                  <button data-select-item>Power BI</button>
-                </li>
-                <li class="select-item">
-                  <button data-select-item>Applications</button>
-                </li>
-                <li class="select-item">
-                  <button data-select-item>Web development</button>
-                </li>
-              </ul>
-            </div>
-            <ul class="project-list">
-              <li class="project-item  active" data-filter-item data-category="tableau report">
-                <a href="https://siaknitonton.github.io/SiakNiTonTon-Portfolio/assets/images/1.png" target="_blank">
-                  <figure class="project-img">
-                    <div class="project-item-icon-box">
-                      <ion-icon name="eye-outline"></ion-icon>
-                    </div>
-                    <img src="./assets/images/1.png" alt="Tableau Reports" loading="lazy">
-                  </figure>
-                  <h3 class="project-title">Daily Sales Report</h3>
-                  <p class="project-category">Tableau Report</p>
-                </a>
-              </li>
-              <li class="project-item  active" data-filter-item data-category="tableau report">
-                <a href="https://siaknitonton.github.io/SiakNiTonTon-Portfolio/assets/images/2.png" target="_blank">
-                  <figure class="project-img">
-                    <div class="project-item-icon-box">
-                      <ion-icon name="eye-outline"></ion-icon>
-                    </div>
-                    <img src="./assets/images/2.png" alt="Promo Report" loading="lazy">
-                  </figure>
-                  <h3 class="project-title">Promo Report</h3>
-                  <p class="project-category">Tableau Report</p>
-                </a>
-              </li>
-              <li class="project-item  active" data-filter-item data-category="tableau report">
-                <a href="https://siaknitonton.github.io/SiakNiTonTon-Portfolio/assets/images/3.png" target="_blank">
-                  <figure class="project-img">
-                    <div class="project-item-icon-box">
-                      <ion-icon name="eye-outline"></ion-icon>
-                    </div>
-                    <img src="./assets/images/3.png" alt="Store Dashboard Monitoring" loading="lazy">
-                  </figure>
-                  <h3 class="project-title">Store Dashboard Monitoring</h3>
-                  <p class="project-category">Tableau Report</p>
-                </a>
-              </li>
-              <li class="project-item  active" data-filter-item data-category="tableau report">
-                <a href="https://siaknitonton.github.io/SiakNiTonTon-Portfolio/assets/images/4.png" target="_blank">
-                  <figure class="project-img">
-                    <div class="project-item-icon-box">
-                      <ion-icon name="eye-outline"></ion-icon>
-                    </div>
-                    <img src="./assets/images/4.png" alt="Average Daily Sales Recovery Report" loading="lazy">
-                  </figure>
-                  <h3 class="project-title">Average Daily Sales Recovery Report</h3>
-                  <p class="project-category">Tableau Report</p>
-                </a>
-              </li>
-
-
-              <li class="project-item  active" data-filter-item data-category="power bi">
-                <a href="https://siaknitonton.github.io/SiakNiTonTon-Portfolio/assets/images/pbi-1.png" target="_blank">
-                  <figure class="project-img">
-                    <div class="project-item-icon-box">
-                      <ion-icon name="eye-outline"></ion-icon>
-                    </div>
-                    <img src="./assets/images/pbi-1.png" alt="Network Uptime Monitoring" loading="lazy">
-                  </figure>
-                  <h3 class="project-title">Network Uptime Monitoring</h3>
-                  <p class="project-category">Power BI Report</p>
-                </a>
-              </li>
-               <li class="project-item  active" data-filter-item data-category="power bi">
-                <a href="https://siaknitonton.github.io/SiakNiTonTon-Portfolio/assets/images/pbi-2.png" target="_blank">
-                  <figure class="project-img">
-                    <div class="project-item-icon-box">
-                      <ion-icon name="eye-outline"></ion-icon>
-                    </div>
-                    <img src="./assets/images/pbi-2.png" alt="Item Rationalization" loading="lazy">
-                  </figure>
-                  <h3 class="project-title">Item Rationalization</h3>
-                  <p class="project-category">Power BI Report</p>
-                </a>
-              </li>
-               <li class="project-item  active" data-filter-item data-category="power bi">
-                <a href="https://siaknitonton.github.io/SiakNiTonTon-Portfolio/assets/images/pbi-3.png" target="_blank"> 
-                  <figure class="project-img">
-                    <div class="project-item-icon-box">
-                      <ion-icon name="eye-outline"></ion-icon>
-                    </div>
-                    <img src="./assets/images/pbi-3.png" alt="OS Ticket Monitoring Dashboard" loading="lazy">
-                  </figure>
-                  <h3 class="project-title">OS Ticket Monitoring Dashboard</h3>
-                  <p class="project-category">Power BI Report</p>
-                </a>
-              </li>
-              <li class="project-item  active" data-filter-item data-category="power bi">
-                <a href="https://siaknitonton.github.io/SiakNiTonTon-Portfolio/assets/images/pbi-4.png" target="_blank">
-                  <figure class="project-img">
-                    <div class="project-item-icon-box">
-                      <ion-icon name="eye-outline"></ion-icon>
-                    </div>
-                    <img src="./assets/images/pbi-4.png" alt="Service Now VSOT Request Dashboard" loading="lazy">
-                  </figure>
-                  <h3 class="project-title">Service Now VSOT Request Dashboard</h3>
-                  <p class="project-category">Power BI Report</p>
-                </a>
-              </li>
-
-
-              
-                
-            </ul>
-          </section>
-        </article>
-        <!--
-        - #BLOG
-      -->
-        
-        <!--
-        - #CONTACT
-      -->
-        <article class="contact" data-page="contact">
-          <header>
-            <h2 class="h2 article-title">Contact</h2>
-          </header>
-          <section class="mapbox" data-mapbox>
-            <figure>
-              <iframe src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJYzKFvX2akTMR7kJMbF-NBrk&key=AIzaSyBYIC2EKyjqBswyI8TtapRFvut7FleS_wE" width="400" height="300" loading="lazy"></iframe>
-            </figure>
-          </section>
-          <section class="contact-form">
-            <h3 class="h3 form-title">Contact Form</h3>
-            <form action="#" class="form" data-form>
-              <div class="input-wrapper">
-                <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
-                <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
-              </div>
-              <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
-              <button class="form-btn" type="submit" disabled data-form-btn>
-                <ion-icon name="paper-plane"></ion-icon>
-                <span>Send Message</span>
-              </button>
-            </form>
-          </section>
-        </article>
-      </div>
-    </main>
-    <!--
-    - custom js link
-  -->
-    <script src="./assets/js/script.js"></script>
-    <!--
-    - ionicon link
-  -->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-  </body>
 </html>
