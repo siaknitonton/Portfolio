@@ -56,24 +56,11 @@ I work with a variety of tools and technologies, including:
 
 ---
 
-## How to Use This Repo
-
-This repository contains:
-
-- The source code for my portfolio website  
-- Content including the “About Me” and “What I’m Doing” sections  
-- Assets like images and icons  
-- Documentation and other supporting files
-
-Feel free to browse around, check out my work, and get inspired!
-
----
-
 ## Contact Me
 
 Have questions or want to connect? Reach out:
 
-- Email: siaknitonton@gmail.com  
+- Email: anthonydaetcarreon@gmail.com  
 
 
 ---
