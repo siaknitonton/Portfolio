@@ -1109,6 +1109,132 @@
             transition: all .3s;
         }
 
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(4px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity .3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+            max-width: 420px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            transform: scale(0.9) translateY(20px);
+            transition: transform .3s ease;
+            position: relative;
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            color: var(--muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            line-height: 1;
+            transition: color .2s;
+        }
+
+        .modal-close:hover {
+            color: var(--text);
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .modal-icon {
+            font-size: 1.5rem;
+        }
+
+        .modal-header h2 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-strong);
+            margin: 0;
+        }
+
+        .modal-body p {
+            color: var(--text);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .modal-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 24px 0;
+        }
+
+        .modal-list li {
+            color: var(--muted);
+            font-size: 0.8rem;
+            padding: 6px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+        }
+
+        .modal-list li::before {
+            content: "→";
+            color: var(--accent);
+            margin-right: 10px;
+        }
+
+        .modal-cta {
+            text-align: center;
+        }
+
+        .modal-cta .btn {
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border: none;
+            padding: 12px 28px;
+            border-radius: 6px;
+            font-family: 'Sora', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .modal-cta .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
 
         /* Skills */
         .skills-grid {
@@ -1331,7 +1457,7 @@
                     <div class="exp">
                         <div class="exp-hd">
                             <div>
-                                <div class="co-row"><span class="co">Tarlac City Water District</span><span
+                                <div class="co-row"><span class="co">Primewater Tarlac</span><span
                                         class="badge f">Full-time</span><span class="badge">Mandaluyong</span></div>
                                 <div class="exp-role">Programmer</div>
                             </div>
@@ -1365,7 +1491,7 @@
                 <!-- Services -->
                 <div class="pane" id="services">
                     <div class="grid2">
-                        <div class="proj">
+                        <div class="proj" onclick="openModal('modalTraining')">
                             <div class="proj-top">
                                 <span class="proj-icon">🗺️</span>
 
@@ -1378,7 +1504,7 @@
                             </div>
                         </div>
 
-                        <div class="proj">
+                        <div class="proj" onclick="openModal('modalTechSupport')">
                             <div class="proj-top">
                                 <span class="proj-icon">🛠️</span>
 
@@ -1390,7 +1516,7 @@
                             </div>
                         </div>
 
-                        <div class="proj">
+                        <div class="proj" onclick="openModal('modalSoftware')">
                             <div class="proj-top">
                                 <span class="proj-icon">💻</span>
 
@@ -1404,6 +1530,20 @@
 
 
 
+                        <div class="proj" onclick="openModal('modalStockTrading')">
+                            <div class="proj-top">
+                                <span class="proj-icon">📈</span>
+
+                            </div>
+                            <div class="proj-title">Stock Trading 101</div>
+                            <div class="proj-desc">
+                                Learn the fundamentals of stock trading—from market basics to practical strategies—
+                                designed to help you familiarize with the stock market.
+                            </div>
+                        </div>
+
+
+
 
 
                     </div>
@@ -1412,13 +1552,100 @@
 
 
 
-
+                
                 <div class="btm">
+                    
                     <div class="proj-desc">
-                        Interested? Let’s talk—email or call me anytime.
+                        Do you have a question? Let’s talk—email or call me anytime.
                     </div>
                 </div>
             </main>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+        <div class="modal" id="modalTraining" style="display: none" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-header">
+                <span class="modal-icon">🗺️</span>
+                <h2>Training Services</h2>
+            </div>
+            <div class="modal-body">
+                <p>Hands-on training in computer basics, programming, and essential digital tools.</p>
+                <ul class="modal-list">
+                    <li>1-on-1 personalized sessions</li>
+                    <li>Group training available</li>
+                    <li>Computer basics & digital literacy</li>
+                    <li>Programming fundamentals</li>
+                    <li>Productivity tools & software</li>
+                    <li>Other (please describe)</li>
+                </ul>
+                <div class="modal-cta">
+                    <button class="btn" onclick="window.location.href='mailto:anthonydaetcarreon@gmail.com'">Book a Session</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal" id="modalTechSupport" style="display: none" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-header">
+                <span class="modal-icon">🛠️</span>
+                <h2>Tech Support Services</h2>
+            </div>
+            <div class="modal-body">
+                <p>Fast and reliable technical support to keep your systems running smoothly.</p>
+                <ul class="modal-list">
+                    <li>Device setup & configuration</li>
+                    <li>Troubleshooting & diagnostics</li>
+                    <li>Network & connectivity issues</li>
+                    <li>Software installation & updates</li>
+                    <li>Data backup & recovery</li>
+                </ul>
+                <div class="modal-cta">
+                    <button class="btn" onclick="window.location.href='mailto:anthonydaetcarreon@gmail.com'">Get Support</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal" id="modalSoftware" style="display: none" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-header">
+                <span class="modal-icon">💻</span>
+                <h2>Custom Software Development</h2>
+            </div>
+            <div class="modal-body">
+                <p>Tailored software solutions to streamline your workflow and scale your business.</p>
+                <ul class="modal-list">
+                    <li>Web applications</li>
+                    <li>Mobile apps</li>
+                    <li>Automation scripts</li>
+                    <li>API integrations</li>
+                    <li>Custom databases</li>
+                </ul>
+                <div class="modal-cta">
+                    <button class="btn" onclick="window.location.href='mailto:anthonydaetcarreon@gmail.com'">Discuss Project</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal" id="modalStockTrading" style="display: none" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-header">
+                <span class="modal-icon">📈</span>
+                <h2>Stock Trading 101</h2>
+            </div>
+            <div class="modal-body">
+                <p>Learn the fundamentals of stock trading and familiarize with the market.</p>
+                <ul class="modal-list">
+                    <li>Market basics & terminology</li>
+                    <li>How to read charts & indicators</li>
+                    <li>Risk management strategies</li>
+                    <li>Trading psychology</li>
+                    <li>Practice with simulated trading</li>
+                </ul>
+                <div class="modal-cta">
+                    <button class="btn" onclick="window.location.href='mailto:anthonydaetcarreon@gmail.com'">Start Learning</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1436,6 +1663,22 @@
             document.getElementById('picon').textContent = dark ? '☀️' : '🌙';
             document.getElementById('plabel').textContent = dark ? 'Light' : 'Dark';
         }
+
+        function openModal(id) {
+            document.getElementById('modalOverlay').classList.add('active');
+            document.getElementById(id).style.display = 'block';
+        }
+
+        function closeModal(event) {
+            if (!event || event.target === document.getElementById('modalOverlay')) {
+                document.getElementById('modalOverlay').classList.remove('active');
+                document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
+            }
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
 
 
     </script>
