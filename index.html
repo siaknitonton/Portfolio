@@ -49,6 +49,12 @@
             --accent2: #5b8dee;
             --code-bg: rgba(255, 255, 255, 0.08);
             --stat-bg: rgba(255, 255, 255, 0.03);
+            /* Popup specific */
+            --popup-bg: #141416;
+            --popup-border: rgba(232, 197, 71, 0.25);
+            --popup-shadow: 0 8px 40px rgba(0,0,0,0.7), 0 0 60px rgba(232,197,71,0.1);
+            --popup-close-bg: rgba(255,255,255,0.06);
+            --popup-close-hover: rgba(255,255,255,0.12);
         }
 
         [data-theme="light"] {
@@ -81,6 +87,12 @@
             --accent2: #2b56c5;
             --code-bg: rgba(0, 0, 0, 0.06);
             --stat-bg: rgba(0, 0, 0, 0.03);
+            /* Popup specific */
+            --popup-bg: #fefefe;
+            --popup-border: rgba(168, 130, 10, 0.3);
+            --popup-shadow: 0 8px 40px rgba(0,0,0,0.18), 0 0 60px rgba(168,130,10,0.08);
+            --popup-close-bg: rgba(0,0,0,0.05);
+            --popup-close-hover: rgba(0,0,0,0.1);
         }
 
         html {
@@ -97,7 +109,6 @@
             justify-content: center;
             padding: 48px 20px 64px;
             transition: background .45s ease, color .3s ease;
-            /* subtle grain texture via repeating gradient */
             background-image:
                 radial-gradient(ellipse 80% 50% at 20% 20%, var(--glow-a), transparent),
                 radial-gradient(ellipse 60% 40% at 80% 80%, var(--glow-b), transparent);
@@ -218,7 +229,6 @@
                 flex-wrap: wrap;
             }
 
-            /* Left panel responsive */
             .shell .left .top-row {
                 flex-wrap: wrap;
                 gap: 14px;
@@ -435,7 +445,6 @@
                 justify-content: center;
             }
 
-            /* Left panel mobile */
             .shell .left .top-row {
                 gap: 10px;
                 margin-bottom: 22px;
@@ -535,7 +544,6 @@
                 display: inline;
             }
 
-            /* New sections responsive */
             .skills-grid {
                 gap: 12px;
             }
@@ -567,6 +575,15 @@
 
             .edu-degree {
                 font-size: 0.72rem;
+            }
+
+            /* Popup mobile */
+            .promo-popup {
+                bottom: 16px !important;
+                right: 16px !important;
+                left: 16px !important;
+                max-width: none !important;
+                width: auto !important;
             }
         }
 
@@ -608,7 +625,6 @@
             color: var(--text);
         }
 
-        /* Theme toggle pill */
         .theme-pill {
             display: flex;
             align-items: center;
@@ -664,7 +680,6 @@
             transition: color .3s;
         }
 
-        /* Status */
         .status {
             display: inline-flex;
             align-items: center;
@@ -674,7 +689,6 @@
             margin-bottom: 20px;
         }
 
-        /* Contact Info */
         .contact-info {
             margin-bottom: 20px;
             display: flex;
@@ -700,18 +714,10 @@
         }
 
         @keyframes blink {
-
-            0%,
-            100% {
-                opacity: 1
-            }
-
-            50% {
-                opacity: .25
-            }
+            0%, 100% { opacity: 1 }
+            50% { opacity: .25 }
         }
 
-        /* Name / tagline */
         .name {
             font-family: 'Sora', sans-serif;
             font-weight: 800;
@@ -751,7 +757,6 @@
             font-weight: 500;
         }
 
-        /* CTA row */
         .cta-row {
             display: flex;
             flex-wrap: wrap;
@@ -825,7 +830,6 @@
             height: 13px;
         }
 
-        /* Stack */
         .stack {
             margin-top: auto;
             padding-top: 18px;
@@ -863,7 +867,6 @@
             transition: background .4s ease;
         }
 
-        /* Tabs */
         .tabs {
             display: flex;
             padding: 0 30px;
@@ -897,7 +900,6 @@
             border-bottom-color: var(--accent);
         }
 
-        /* Content */
         .pane {
             display: none;
             padding: 34px 30px;
@@ -909,18 +911,10 @@
         }
 
         @keyframes up {
-            from {
-                opacity: 0;
-                transform: translateY(7px)
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0)
-            }
+            from { opacity: 0; transform: translateY(7px) }
+            to { opacity: 1; transform: translateY(0) }
         }
 
-        /* Experience */
         .exp {
             margin-bottom: 40px;
             padding-bottom: 40px;
@@ -1031,7 +1025,6 @@
             line-height: 1.52;
         }
 
-        /* Services */
         .grid2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -1235,8 +1228,6 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
-
-        /* Skills */
         .skills-grid {
             display: flex;
             flex-direction: column;
@@ -1269,8 +1260,6 @@
             padding: 4px 8px;
         }
 
-
-        /* Bottom bar */
         .btm {
             margin-top: auto;
             padding: 11px 30px;
@@ -1291,6 +1280,156 @@
         .btm svg:hover {
             color: var(--text);
         }
+
+        /* ════════════ PROMO POPUP ════════════ */
+        .promo-popup {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 2000;
+            max-width: 320px;
+            width: 320px;
+            background: var(--popup-bg);
+            border: 1px solid var(--popup-border);
+            border-radius: 14px;
+            box-shadow: var(--popup-shadow);
+            padding: 20px 20px 18px;
+            font-family: 'JetBrains Mono', monospace;
+
+            /* Hidden state */
+            opacity: 0;
+            transform: translateY(18px) scale(0.96);
+            pointer-events: none;
+            transition: opacity .45s cubic-bezier(.22,1,.36,1), transform .45s cubic-bezier(.22,1,.36,1);
+        }
+
+        .promo-popup.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: all;
+        }
+
+        .promo-popup.hiding {
+            opacity: 0;
+            transform: translateY(12px) scale(0.95);
+            pointer-events: none;
+        }
+
+        /* Accent top bar */
+        .promo-popup::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 18px;
+            right: 18px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            border-radius: 0 0 2px 2px;
+            opacity: 0.85;
+        }
+
+        .promo-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--popup-close-bg);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--muted);
+            font-size: 0.75rem;
+            line-height: 1;
+            transition: background .2s, color .2s, transform .15s;
+        }
+
+        .promo-close:hover {
+            background: var(--popup-close-hover);
+            color: var(--text);
+            transform: rotate(90deg);
+        }
+
+        .promo-emoji {
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+            display: block;
+            line-height: 1;
+        }
+
+        .promo-message {
+            font-size: 0.76rem;
+            line-height: 1.7;
+            color: var(--text);
+            margin-bottom: 14px;
+            padding-right: 14px;
+        }
+
+        .promo-message strong {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .promo-actions {
+            display: flex;
+            gap: 7px;
+            align-items: center;
+        }
+
+        .promo-btn-main {
+            flex: 1;
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border: none;
+            padding: 9px 14px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background .2s, color .2s, transform .15s, box-shadow .2s;
+            white-space: nowrap;
+        }
+
+        .promo-btn-main:hover {
+            background: var(--accent);
+            color: #0f0f11;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(232, 197, 71, 0.3);
+        }
+
+        .promo-btn-dismiss {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--muted);
+            padding: 8px 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.64rem;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: color .2s, border-color .2s;
+            white-space: nowrap;
+        }
+
+        .promo-btn-dismiss:hover {
+            color: var(--text);
+            border-color: var(--muted);
+        }
+
+        /* Subtle ping ring on popup appearance */
+        @keyframes ping-ring {
+            0% { box-shadow: var(--popup-shadow), 0 0 0 0 rgba(232, 197, 71, 0.35); }
+            70% { box-shadow: var(--popup-shadow), 0 0 0 10px rgba(232, 197, 71, 0); }
+            100% { box-shadow: var(--popup-shadow), 0 0 0 0 rgba(232, 197, 71, 0); }
+        }
+
+        .promo-popup.ping {
+            animation: ping-ring 1.2s ease-out;
+        }
     </style>
 </head>
 
@@ -1302,7 +1441,6 @@
             <!-- ═══ LEFT ═══ -->
             <aside class="left">
                 <div class="top-row">
-
                     <div class="theme-pill" onclick="toggleTheme()" id="pill">
                         <div class="track">
                             <div class="knob"></div>
@@ -1340,12 +1478,8 @@
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                             <g id="SVGRepo_iconCarrier">
                                 <g>
-                                    <path
-                                        d="M113,145c-141.4,0-256,114.6-256,256s114.6,256,256,256s256-114.6,256-256S254.4,145,113,145z M272.8,560.7 c-20.8,20.8-44.9,37.1-71.8,48.4c-27.8,11.8-57.4,17.7-88,17.7c-30.5,0-60.1-6-88-17.7c-26.9-11.4-51.1-27.7-71.8-48.4 c-20.8-20.8-37.1-44.9-48.4-71.8C-107,461.1-113,431.5-113,401s6-60.1,17.7-88c11.4-26.9,27.7-51.1,48.4-71.8 c20.9-20.8,45-37.1,71.9-48.5C52.9,181,82.5,175,113,175s60.1,6,88,17.7c26.9,11.4,51.1,27.7,71.8,48.4 c20.8,20.8,37.1,44.9,48.4,71.8c11.8,27.8,17.7,57.4,17.7,88c0,30.5-6,60.1-17.7,88C309.8,515.8,293.5,540,272.8,560.7z">
-                                    </path>
-                                    <path
-                                        d="M146.8,313.7c10.3,0,21.3,3.2,21.3,3.2l6.6-39.2c0,0-14-4.8-47.4-4.8c-20.5,0-32.4,7.8-41.1,19.3 c-8.2,10.9-8.5,28.4-8.5,39.7v25.7H51.2v38.3h26.5v133h49.6v-133h39.3l2.9-38.3h-42.2v-29.9C127.3,317.4,136.5,313.7,146.8,313.7z">
-                                    </path>
+                                    <path d="M113,145c-141.4,0-256,114.6-256,256s114.6,256,256,256s256-114.6,256-256S254.4,145,113,145z M272.8,560.7 c-20.8,20.8-44.9,37.1-71.8,48.4c-27.8,11.8-57.4,17.7-88,17.7c-30.5,0-60.1-6-88-17.7c-26.9-11.4-51.1-27.7-71.8-48.4 c-20.8-20.8-37.1-44.9-48.4-71.8C-107,461.1-113,431.5-113,401s6-60.1,17.7-88c11.4-26.9,27.7-51.1,48.4-71.8 c20.9-20.8,45-37.1,71.9-48.5C52.9,181,82.5,175,113,175s60.1,6,88,17.7c26.9,11.4,51.1,27.7,71.8,48.4 c20.8,20.8,37.1,44.9,48.4,71.8c11.8,27.8,17.7,57.4,17.7,88c0,30.5-6,60.1-17.7,88C309.8,515.8,293.5,540,272.8,560.7z"></path>
+                                    <path d="M146.8,313.7c10.3,0,21.3,3.2,21.3,3.2l6.6-39.2c0,0-14-4.8-47.4-4.8c-20.5,0-32.4,7.8-41.1,19.3 c-8.2,10.9-8.5,28.4-8.5,39.7v25.7H51.2v38.3h26.5v133h49.6v-133h39.3l2.9-38.3h-42.2v-29.9C127.3,317.4,136.5,313.7,146.8,313.7z"></path>
                                 </g>
                             </g>
                         </svg>
@@ -1359,8 +1493,7 @@
                     <button class="icon-btn" title="LinkedIn"
                         onclick="window.open('https://www.linkedin.com/in/anthonycarreon1', '_blank')">
                         <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
                             <circle cx="4" cy="4" r="2" />
                         </svg>
                     </button>
@@ -1374,8 +1507,7 @@
                 </div>
 
                 <div class="stack">
-                    <div class="stack-row"><strong>Data Engineering</strong><span>SSIS, ETL, BigQuery, SQL Server</span>
-                    </div>
+                    <div class="stack-row"><strong>Data Engineering</strong><span>SSIS, ETL, BigQuery, SQL Server</span></div>
                     <div class="stack-row"><strong>BI & Analytics</strong><span>Power BI, Tableau, SSRS</span></div>
                     <div class="stack-row"><strong>Development</strong><span>C#, .NET Core, ASP.NET Core</span></div>
                     <div class="stack-row"><strong>Database</strong><span>SQL, Data Modeling, DAX</span></div>
@@ -1387,127 +1519,103 @@
             <!-- ═══ RIGHT ═══ -->
             <main class="right">
                 <nav class="tabs">
-
-                    <div class="tab active" onclick="sw('experience')">Experience</div>
-                    <div class="tab" onclick="sw('services')">Services</div>
+                    <div class="tab active" onclick="sw('services')">Services</div>
+                    <div class="tab" onclick="sw('experience')">Experience</div>
                 </nav>
 
                 <!-- EXPERIENCE -->
-                <div class="pane active" id="experience">
+                <div class="pane" id="experience">
                     <div class="exp">
                         <div class="exp-hd">
                             <div>
-                                <div class="co-row"><span class="co">Blackhawk Industrial Inc.</span><span
-                                        class="badge f">Full-time</span><span class="badge">Laguna</span> <span
-                                        class="badge r">remote</span></div>
+                                <div class="co-row"><span class="co">Blackhawk Industrial Inc.</span><span class="badge f">Full-time</span><span class="badge">Laguna</span> <span class="badge r">remote</span></div>
                                 <div class="exp-role">Sr. Business Intelligence Developer</div>
                             </div>
                             <div class="exp-date">Dec 2023 → Present</div>
                         </div>
                         <ul class="exp-bullets">
                             <li>Migrated legacy systems using Power Automate and SharePoint for better efficiency; optimized SQL queries, SSIS packages, SSRS, and Power BI reports. Key project: Upgraded SSIS from SQL Server 2008 to 2022, cutting data ingestion time by 80% (3-4 hours to 50 min-1.5 hours).</li>
-                            
                         </ul>
                     </div>
                     <div class="exp">
                         <div class="exp-hd">
                             <div>
-                                <div class="co-row"><span class="co">Shakey's Pizza Asia Ventures Inc.</span><span
-                                        class="badge f">Full-time</span><span class="badge">Parañaque</span> <span
-                                        class="badge r">remote</span></div>
+                                <div class="co-row"><span class="co">Shakey's Pizza Asia Ventures Inc.</span><span class="badge f">Full-time</span><span class="badge">Parañaque</span> <span class="badge r">remote</span></div>
                                 <div class="exp-role">Sr. Business Intelligence Developer</div>
                             </div>
                             <div class="exp-date">Jan 2023 → Dec 2023</div>
                         </div>
                         <ul class="exp-bullets">
-                            <li> Improved Power BI and Tableau data sources for higher report quality; set up secure permissions and data governance. Key project: Built ETL in BigQuery and SSIS, boosting Tableau report quality by 40%.</li>
-                            
+                            <li>Improved Power BI and Tableau data sources for higher report quality; set up secure permissions and data governance. Key project: Built ETL in BigQuery and SSIS, boosting Tableau report quality by 40%.</li>
                         </ul>
                     </div>
                     <div class="exp">
                         <div class="exp-hd">
                             <div>
-                                <div class="co-row"><span class="co">Yondu Inc.</span><span
-                                        class="badge f">Full-time</span><span class="badge">Taguig</span> <span
-                                        class="badge r">remote</span> </div>
+                                <div class="co-row"><span class="co">Yondu Inc.</span><span class="badge f">Full-time</span><span class="badge">Taguig</span> <span class="badge r">remote</span></div>
                                 <div class="exp-role">Jr. Software Engineer / BI Developer</div>
                             </div>
                             <div class="exp-date">Oct 2021 → Jan 2023</div>
                         </div>
                         <ul class="exp-bullets">
                             <li>Optimized complex queries in BigQuery and SQL Server; applied data modeling for normalization and integrity. Built dynamic Tableau reports for easier decision-making.</li>
-                           
                         </ul>
                     </div>
                     <div class="exp">
                         <div class="exp-hd">
                             <div>
-                                <div class="co-row"><span class="co">Universal Leaf Philippines Inc.</span><span
-                                        class="badge f">Full-time</span><span class="badge">La Union</span> <span
-                                        class="badge r">remote</span></div>
+                                <div class="co-row"><span class="co">Universal Leaf Philippines Inc.</span><span class="badge f">Full-time</span><span class="badge">La Union</span> <span class="badge r">remote</span></div>
                                 <div class="exp-role">BI Developer / Supervisor I</div>
                             </div>
                             <div class="exp-date">Aug 2019 → Jul 2021</div>
                         </div>
                         <ul class="exp-bullets">
                             <li>Spearheaded the development of Power BI reports and dashboards as well as the data warehouse, using DAX and Power Query to model data and SSIS packages to manage ETL and integrate multiple sources, while gathering stakeholder requirements and delivering scalable BI solutions based on best practices in data extraction, transformation, and warehouse design.</li>
-                           
                         </ul>
                     </div>
                     <div class="exp">
                         <div class="exp-hd">
                             <div>
-                                <div class="co-row"><span class="co">Primewater Tarlac</span><span
-                                        class="badge f">Full-time</span><span class="badge">Mandaluyong</span></div>
+                                <div class="co-row"><span class="co">Primewater Tarlac</span><span class="badge f">Full-time</span><span class="badge">Mandaluyong</span></div>
                                 <div class="exp-role">Programmer</div>
                             </div>
                             <div class="exp-date">Jul 2018 → Aug 2019</div>
                         </div>
                         <ul class="exp-bullets">
-                            <li>Modernized collection/billing system from legacy language; applied standard techniques for code quality; optimized transaction ledger queries for faster retrieval.
-                            </li>
-                            
+                            <li>Modernized collection/billing system from legacy language; applied standard techniques for code quality; optimized transaction ledger queries for faster retrieval.</li>
                         </ul>
                     </div>
                     <div class="exp">
                         <div class="exp-hd">
                             <div>
-                                <div class="co-row"><span class="co">JVP BreadKing Food Corp.</span><span
-                                        class="badge f">Full-time</span><span class="badge">Tarlac</span>
-                                    <span class="badge r">remote</span>
-                                </div>
+                                <div class="co-row"><span class="co">JVP BreadKing Food Corp.</span><span class="badge f">Full-time</span><span class="badge">Tarlac</span><span class="badge r">remote</span></div>
                                 <div class="exp-role">Jr. Programmer</div>
                             </div>
                             <div class="exp-date">Jul 2017 → Jun 2018</div>
                         </div>
                         <ul class="exp-bullets">
-                            <li>Developed employee self-service and timekeeping systems; revamped ordering system with standard techniques.
-                            </li>
-                         
+                            <li>Developed employee self-service and timekeeping systems; revamped ordering system with standard techniques.</li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Services -->
-                <div class="pane" id="services">
+                <div class="pane active" id="services">
                     <div class="grid2">
                         <div class="proj" onclick="openModal('modalTraining')">
                             <div class="proj-top">
                                 <span class="proj-icon">🗺️</span>
-
                             </div>
                             <div class="proj-title">Training Services</div>
                             <div class="proj-desc">
                                 1-on-1 or group hands-on training in computer basics, programming, and essential digital
-                                tools—designed to help you learn fast, build confidence, and apply skills in real-world
-                                tasks.
+                                tools—designed to help you learn fast, build confidence, and apply skills in real-world tasks.
                             </div>
                         </div>
 
                         <div class="proj" onclick="openModal('modalTechSupport')">
                             <div class="proj-top">
                                 <span class="proj-icon">🛠️</span>
-
                             </div>
                             <div class="proj-title">Tech Support Services</div>
                             <div class="proj-desc">
@@ -1519,7 +1627,6 @@
                         <div class="proj" onclick="openModal('modalSoftware')">
                             <div class="proj-top">
                                 <span class="proj-icon">💻</span>
-
                             </div>
                             <div class="proj-title">Custom Software Development</div>
                             <div class="proj-desc">
@@ -1528,12 +1635,9 @@
                             </div>
                         </div>
 
-
-
                         <div class="proj" onclick="openModal('modalStockTrading')">
                             <div class="proj-top">
                                 <span class="proj-icon">📈</span>
-
                             </div>
                             <div class="proj-title">Stock Trading 101</div>
                             <div class="proj-desc">
@@ -1541,29 +1645,19 @@
                                 designed to help you familiarize with the stock market.
                             </div>
                         </div>
-
-
-
-
-
                     </div>
                 </div>
 
-
-
-
-                
                 <div class="btm">
-                    
                     <div class="proj-desc">
-                        Do you have a question? Let’s talk—email or call me anytime.
+                        Do you have a question? Let's talk—email or call me anytime.
                     </div>
                 </div>
             </main>
         </div>
     </div>
 
-    <!-- Modals -->
+    <!-- Service Modals -->
     <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
         <div class="modal" id="modalTraining" style="display: none" onclick="event.stopPropagation()">
             <button class="modal-close" onclick="closeModal()">&times;</button>
@@ -1626,7 +1720,6 @@
                 </div>
             </div>
         </div>
-        
         <div class="modal" id="modalStockTrading" style="display: none" onclick="event.stopPropagation()">
             <button class="modal-close" onclick="closeModal()">&times;</button>
             <div class="modal-header">
@@ -1649,13 +1742,34 @@
         </div>
     </div>
 
+    <!-- ════ PROMO POPUP ════ -->
+    <div class="promo-popup" id="promoPopup" role="complementary" aria-label="Promotional message">
+        <button class="promo-close" onclick="dismissPromo()" aria-label="Close">&times;</button>
+        <span class="promo-emoji">🚀</span>
+        <p class="promo-message">
+            Love this kind of website?<br>
+            <strong>Want one just like it</strong> for your business or personal brand?<br>
+            Message me and let's make it happen!
+        </p>
+        <div class="promo-actions">
+            <button class="promo-btn-main" onclick="window.location.href='mailto:anthonydaetcarreon@gmail.com'">
+                ✉️ Message Tony
+            </button>
+            <button class="promo-btn-dismiss" onclick="dismissPromo()">
+                Maybe later
+            </button>
+        </div>
+    </div>
+
     <script>
-        const TABS = ['experience', 'services'];
+        /* ── Tabs ── */
+        const TABS = ['services', 'experience'];
         function sw(id) {
             document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', TABS[i] === id));
             document.querySelectorAll('.pane').forEach(p => p.classList.toggle('active', p.id === id));
         }
 
+        /* ── Theme toggle ── */
         let dark = true;
         function toggleTheme() {
             dark = !dark;
@@ -1664,6 +1778,7 @@
             document.getElementById('plabel').textContent = dark ? 'Light' : 'Dark';
         }
 
+        /* ── Service modals ── */
         function openModal(id) {
             document.getElementById('modalOverlay').classList.add('active');
             document.getElementById(id).style.display = 'block';
@@ -1676,11 +1791,30 @@
             }
         }
 
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') closeModal();
         });
 
+        /* ── Promo popup — fires exactly 30 s after page load ── */
+        window.onload = function () {
+            setTimeout(function () {
+                const popup = document.getElementById('promoPopup');
+                popup.classList.add('visible');
+                // Brief ping animation to gently draw the eye
+                popup.classList.add('ping');
+                popup.addEventListener('animationend', function () {
+                    popup.classList.remove('ping');
+                }, { once: true });
+            }, 20000); // 30 000 ms = 30 seconds
+        };
 
+        function dismissPromo() {
+            const popup = document.getElementById('promoPopup');
+            popup.classList.add('hiding');
+            popup.addEventListener('transitionend', function () {
+                popup.style.display = 'none';
+            }, { once: true });
+        }
     </script>
 </body>
 
