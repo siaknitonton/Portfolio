@@ -1634,6 +1634,93 @@
             font-size: 0.72rem;
             line-height: 1.6;
         }
+
+        /* ════════════ LIGHTBOX ════════════ */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0,0,0,0.88);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            cursor: zoom-out;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+            animation: lbFadeIn 0.18s ease;
+        }
+
+        @keyframes lbFadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        .lightbox-inner {
+            position: relative;
+            max-width: 90vw;
+            max-height: 88vh;
+            cursor: default;
+            animation: lbZoomIn 0.2s cubic-bezier(0.34,1.56,0.64,1);
+        }
+
+        @keyframes lbZoomIn {
+            from { transform: scale(0.88); opacity: 0; }
+            to   { transform: scale(1);    opacity: 1; }
+        }
+
+        .lightbox-inner img {
+            display: block;
+            max-width: 90vw;
+            max-height: 82vh;
+            width: auto;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+            object-fit: contain;
+        }
+
+        .lightbox-caption {
+            margin-top: 12px;
+            text-align: center;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.55);
+            letter-spacing: 0.04em;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -14px;
+            right: -14px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #222;
+            border: 1px solid #444;
+            color: #fff;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background .15s, transform .15s;
+            line-height: 1;
+            z-index: 1;
+        }
+
+        .lightbox-close:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        .pcard-img {
+            cursor: zoom-in;
+        }
     </style>
 </head>
 
@@ -1803,18 +1890,7 @@
             if (e.key === 'Escape') closeModal();
         });
 
-        /* ── Promo popup — fires exactly 30 s after page load ── */
-        window.onload = function () {
-            setTimeout(function () {
-                const popup = document.getElementById('promoPopup');
-                popup.classList.add('visible');
-                // Brief ping animation to gently draw the eye
-                popup.classList.add('ping');
-                popup.addEventListener('animationend', function () {
-                    popup.classList.remove('ping');
-                }, { once: true });
-            }, 20000); // 30 000 ms = 30 seconds
-        };
+        
 
         function dismissPromo() {
             const popup = document.getElementById('promoPopup');
@@ -1944,7 +2020,7 @@
 
             const cardsHtml = projects.map(p => {
                 const imgSection = p.screenshotUrl
-                    ? `<img class="pcard-img" src="${esc(p.screenshotUrl)}" alt="${esc(p.title)}" loading="lazy" onerror="this.outerHTML='<div class=\'pcard-img-placeholder\'>🖼️</div>'">`
+                    ? `<img class="pcard-img" src="${esc(p.screenshotUrl)}" alt="${esc(p.title)}" loading="lazy" onclick="openLightbox('${esc(p.screenshotUrl)}','${esc(p.title)}')" onerror="this.outerHTML='<div class=\'pcard-img-placeholder\'>🖼️</div>'">`
                     : `<div class="pcard-img-placeholder">🖼️</div>`;
 
                 const tagsHtml = (p.tags || []).map(t =>
@@ -1989,10 +2065,48 @@
                 .replace(/'/g, '&#039;');
         }
 
+        /* ════════════ LIGHTBOX ════════════ */
+        function openLightbox(src, caption) {
+            const overlay = document.getElementById('lightbox');
+            const img     = document.getElementById('lightbox-img');
+            const cap     = document.getElementById('lightbox-caption');
+            img.src = src;
+            img.alt = caption;
+            cap.textContent = caption;
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox(e) {
+            // If clicking inner content (not the overlay), do nothing
+            if (e && e.target === document.getElementById('lightbox-inner')) return;
+            if (e && document.getElementById('lightbox-inner').contains(e.target)
+                  && e.target.tagName !== 'DIV') return;
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+            // Clear src after animation
+            setTimeout(() => { document.getElementById('lightbox-img').src = ''; }, 200);
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
         /* Load data on page ready */
         document.addEventListener('DOMContentLoaded', loadSheetData);
 
     </script>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
+        <div class="lightbox-inner" id="lightbox-inner">
+            <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+            <img id="lightbox-img" src="" alt="" />
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+    </div>
+
 </body>
 
 </html>
